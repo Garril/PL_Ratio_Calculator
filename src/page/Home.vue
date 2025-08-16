@@ -1,57 +1,14 @@
 <template>
   <div class="container">
-    <el-input
-      v-model="dyurl"
-      style="width: 580px"
-      :rows="2"
-      type="textarea"
-      placeholder="输入抖音链接"
-      @change="handleDYUrl"
-    />
-
-    <el-input
-      v-model="formaturl"
-      style="width: 580px"
-      disabled
-      placeholder="解析后的抖音链接"
-    />
-
-    <el-form-item label="保存路径" class="path-selector">
-      <el-input
-        v-model="directoryPath"
-        placeholder="请选择本地目录"
-        readonly
-        class="path-input"
-      >
-        <template #append>
-          <el-button
-            type="primary"
-            icon="FolderOpened"
-            @click="openDirectoryDialog"
-          >
-            选择目录
-          </el-button>
-        </template>
-      </el-input>
-    </el-form-item>
-
-    <el-button
-      type="primary"
-      @click="download"
-      v-loading.fullscreen.lock="fullscreenLoading"
-      >下载</el-button
-    >
+    <Calc></Calc>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
+import Calc from "@/components/Calc.vue";
 // @ts-ignore
-/* dyurl案例：
-9.28 08/16 bNW:/ t@r.EH 【抖音商城】https://v.douyin.com/92ATSTRwUEY/ 无痕强力挂钩强力粘胶免打孔免钉粘钩浴室厨房收纳粘钩卫生间
-长按复制此条消息，打开抖音搜索，查看商品详情，有机会获得大额券！
-*/
 const dyurl =
   ref(`9.28 08/16 bNW:/ t@r.EH 【抖音商城】https://v.douyin.com/92ATSTRwUEY/ 无痕强力挂钩强力粘胶免打孔免钉粘钩浴室厨房收纳粘钩卫生间
 长按复制此条消息，打开抖音搜索，查看商品详情，有机会获得大额券！`);
@@ -111,18 +68,18 @@ const download = async () => {
 
 <style scoped>
 .container {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-direction: column;
-  min-height: 200px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 90vh;
+}
+/* 为 Chrome、Safari 和 Opera 隐藏滚动条 */
+.container::-webkit-scrollbar {
+  display: none;
 }
 
-.path-input {
-  width: 500px;
-
-  :deep(.el-input-group__append) {
-    padding: 0 12px;
-  }
+/* 为 IE、Edge 和 Firefox 隐藏滚动条 */
+.container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 </style>

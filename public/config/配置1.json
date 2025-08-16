@@ -1,0 +1,8 @@
+{
+  "entryPrice": 120.5,
+  "stopLossPrice": 118.2,
+  "leverage": 20,
+  "lossPercentage": 0.03,
+  "principal": 5000,
+  "takeProfit": 125.0
+}

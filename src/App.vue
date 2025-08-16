@@ -17,8 +17,7 @@ import zhCn from "element-plus/es/locale/lang/zh-cn";
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  min-height: 50vh;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
