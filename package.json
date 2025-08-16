@@ -1,0 +1,92 @@
+{
+  "name": "fecth-img",
+  "private": true,
+  "version": "0.0.0",
+  "author": "garril",
+  "main": "electron/main.js",
+  "description": "Project for fetch dy img",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "commit": "npx cz",
+    "sync": "git reset --hard origin/main",
+    "start": "concurrently \"yarn dev\" \"yarn se\"",
+    "se": "electron .",
+    "build": "vite build && electron-builder",
+    "create-icon": "npx electron-icon-builder -i ./public/source.png -o ./public/icons",
+    "lint": "eslint . --ext .vue,.js"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
+  },
+  "build": {
+    "appId": "cn.garril.fecth-img",
+    "productName": "FecthImg",
+    "executableName": "FecthImg",
+    "extraMetadata": {
+      "name": "FecthImg"
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "public/icons/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icons/win/icon.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "public/icons/mac/icon.icns"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "installerIcon": "public/icons/win/icon.ico",
+      "uninstallerIcon": "public/icons/win/icon.ico",
+      "language": "2052"
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "compression": "maximum",
+    "extraResources": [
+      {
+        "from": "public/icons",
+        "to": "icons"
+      },
+      {
+        "from": "./preconfig",
+        "to": "preconfig"
+      }
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
+    "element-plus": "^2.9.5",
+    "sortablejs": "^1.15.6",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "commitizen": "^4.3.1",
+    "concurrently": "^9.1.2",
+    "cz-customizable": "^7.4.0",
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9.3.0",
+    "unplugin-auto-import": "^19.1.0",
+    "unplugin-vue-components": "^28.4.0",
+    "vite": "^6.1.0"
+  }
+}
