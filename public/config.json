@@ -1,0 +1,9 @@
+{
+  "principal": "10000",
+  "leverage": 10,
+  "riskPercentage": 5,
+  "entryPrice": "1000",
+  "stopLossPrice": "999",
+  "takeProfitPrice": "1005",
+  "feeRate": "0.05"
+}

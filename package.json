@@ -1,10 +1,10 @@
 {
-  "name": "PL_RATIO_CALC",
+  "name": "PLCalc",
   "private": true,
   "version": "0.0.0",
-  "author": "garril",
+  "author": "cedric",
   "main": "electron/main.js",
-  "description": "Project for fetch dy img",
+  "description": "Project for calc pl ratio",
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",

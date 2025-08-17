@@ -287,13 +287,31 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { ElInput, ElButton, ElTooltip, ElIcon } from "element-plus";
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ElInput, ElButton, ElTooltip, ElIcon, ElMessage } from "element-plus";
 import { InfoFilled } from "@element-plus/icons-vue";
 import Decimal from "decimal.js";
 
 // 配置Decimal全局精度和舍入模式
 Decimal.set({ precision: 20, rounding: Decimal.ROUND_HALF_UP });
+
+// 保存配置
+const saveConfigData = async () => {
+  try {
+    await window.electronAPI.saveConfigData({
+      principal: form.value.principal,
+      leverage: form.value.leverage,
+      riskPercentage: form.value.riskPercentage,
+      entryPrice: form.value.entryPrice,
+      stopLossPrice: form.value.stopLossPrice,
+      takeProfitPrice: form.value.takeProfitPrice,
+      feeRate: form.value.feeRate,
+    });
+    ElMessage.success("配置已保存");
+  } catch (error) {
+    ElMessage.error("保存失败");
+  }
+};
 
 // 工具函数：安全地将值转换为Decimal，处理空值和无效值
 const toDecimal = (value) => {
@@ -337,6 +355,30 @@ const form = ref({
   principal: "10000", // 本金值(USDT)
   takeProfitPrice: "", // TP止盈价格
   feeRate: 0.05, // 手续费率(%)，默认0.05%
+});
+
+// 加载配置
+const loadConfig = async () => {
+  const config = await window.electronAPI.getConfigData();
+  form.value = { ...form.value, ...config };
+};
+onMounted(() => {
+  loadConfig();
+  // 直接监听document键盘事件（更可靠）
+  const handleKeyDown = (e) => {
+    // 同时支持Windows(Ctrl)和Mac(Command)
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+      e.preventDefault(); // 阻止浏览器默认保存
+      saveConfigData(); // 调用你的保存函数
+    }
+  };
+
+  document.addEventListener("keydown", handleKeyDown);
+  window.electronAPI.onWindowClose(saveConfigData);
+  // 组件卸载时移除监听，避免内存泄漏
+  onBeforeUnmount(() => {
+    document.removeEventListener("keydown", handleKeyDown);
+  });
 });
 
 // 交易方向判断
