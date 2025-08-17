@@ -8,10 +8,13 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    2: typeof import('./src/components/Calc copy 2.vue')['default']
     AddConfigDialog: typeof import('./src/components/AddConfigDialog.vue')['default']
+    Bak: typeof import('./src/components/Bak.vue')['default']
     Calc: typeof import('./src/components/Calc.vue')['default']
     ConfigForm: typeof import('./src/components/ConfigForm.vue')['default']
     ConfigManager: typeof import('./src/components/ConfigManager.vue')['default']
+    copy: typeof import('./src/components/Calc copy.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDivider: typeof import('element-plus/es')['ElDivider']

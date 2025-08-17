@@ -1,5 +1,5 @@
 {
-  "name": "fecth-img",
+  "name": "PL_RATIO_CALC",
   "private": true,
   "version": "0.0.0",
   "author": "garril",
@@ -22,11 +22,11 @@
     }
   },
   "build": {
-    "appId": "cn.garril.fecth-img",
-    "productName": "FecthImg",
-    "executableName": "FecthImg",
+    "appId": "cn.garril.pl-ratio-calc",
+    "productName": "PLCalc",
+    "executableName": "PLCalc",
     "extraMetadata": {
-      "name": "FecthImg"
+      "name": "PLCalc"
     },
     "directories": {
       "output": "dist"
@@ -72,6 +72,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
     "axios": "^1.8.4",
+    "decimal.js": "^10.6.0",
     "dotenv": "^16.4.7",
     "element-plus": "^2.9.5",
     "sortablejs": "^1.15.6",
