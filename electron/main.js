@@ -8,7 +8,7 @@ const { dialog } = require('electron');
 // 加载 .env.development 文件
 // Vite 的 loadEnv 只会将环境变量注入到 Vite 的构建过程和前端代码中，而不会自动注入到 Electron 的主进程（main.js）中。
 dotenv.config({ path: '.env.development' });
-
+app.setName('PLCalc');
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1080,
